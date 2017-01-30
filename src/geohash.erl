@@ -33,22 +33,22 @@
 -on_load(init/0).
 
 %% @doc Decode a geohash in to latitude and longitude
--spec decode(binary()) -> {float(), float()}.
+-spec decode(binary()) -> {ok, {float(), float()}}.
 decode(_GeoHash) ->
     exit(geohash_nif_not_loaded).
 
 %% @doc Decode a geohash in to latitude and longitude bounds
--spec decode_bbox(binary()) -> {{float(), float()}, {float(), float()}}.
+-spec decode_bbox(binary()) -> {ok, {{float(), float()}, {float(), float()}}}.
 decode_bbox(_GeoHash) ->
     exit(geohash_nif_not_loaded).
 
 %% @doc Encode latitude and longitude into a geohash 
--spec encode(float(), float(), pos_integer()) -> binary().
+-spec encode(float(), float(), pos_integer()) -> {ok, binary()} | {error, precision_range | alloc_error}.
 encode(_Latitude, _Longitude, _Precision) ->
     exit(geohash_nif_not_loaded).
 
 %% @doc Calculate a neighoring geohash
--spec neighbor(binary(), n | s | w | e) -> binary().
+-spec neighbor(binary(), n | s | w | e) -> {ok, binary()} | {error, alloc_error}.
 neighbor(_GeoHash, _Direction) ->
     exit(geohash_nif_not_loaded).
 
